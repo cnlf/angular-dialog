@@ -14,12 +14,33 @@
         header {
             color: #fff;
             background-color: #4e4e4e;
+            padding: 40px 0;
+            text-align: center;
         }
 
         header h1 {
-            padding: 40px 0;
             margin: 0;
-            text-align: center;
+        }
+
+        header p {
+            padding-top: 20px;
+            margin: 0;
+        }
+
+        header p a,
+        header p a:link,
+        header p a:active {
+            color: #dadada;
+            display: inline-block;
+            background-color: #666;
+            border: 1px #9d9d9d solid;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+
+        header p a:hover {
+            color: #ebebeb;
+            border-color: #bcbcbc;
         }
 
         .main {
@@ -106,6 +127,7 @@
 <body ng-controller="DemoCtrl">
 <header>
     <h1>Angular Dialog</h1>
+    <p><a href="https://github.com/cnlf/angular-dialog">View on GitHub</a></p>
 </header>
 <div class="main">
     <h3>使用自定义服务调用</h3>
