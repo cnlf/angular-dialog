@@ -1,0 +1,413 @@
+<!doctype html>
+<html ng-app="dialogDemo">
+<head>
+    <meta charset="utf-8">
+    <title>Angular Dialog</title>
+    <link rel="stylesheet" href="../src/css/ngDialog.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        header {
+            color: #fff;
+            background-color: #4e4e4e;
+        }
+
+        header h1 {
+            padding: 40px 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .main {
+            padding: 0 20%;
+        }
+
+        .main h3 {
+            margin: 30px 0 0 0;
+        }
+
+        .main a,
+        .main a:link,
+        .main a:active {
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            margin: 10px 10px 10px 0;
+            padding: 0 15px;
+            background-color: #e4eaec;
+            color: #333;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .main a:hover {
+            background-color: #dfe5e7;
+        }
+
+        .demo-dialog-head {
+            height: 50px;
+            line-height: 50px;
+            padding: 0 15px;
+            background-color: #eee;
+        }
+
+        .demo-dialog-body {
+            padding: 15px;
+        }
+
+        .demo-dialog-foot {
+            border-top: 1px #eee solid;
+            padding: 15px 0;
+            margin: 0 15px;
+            text-align: right;
+            overflow: hidden;
+        }
+
+        .demo-dialog-button {
+            border: 0;
+            cursor: pointer;
+            font-size: 12px;
+            line-height: 30px;
+            margin: 0 5px;
+            padding: 0 20px;
+            float: right;
+        }
+
+        .demo-dialog-button:hover {
+            opacity: .9;
+            outline: none;
+        }
+
+        .demo-dialog-button:focus {
+            outline: none;
+        }
+
+        .demo-dialog-button-ok {
+            background: #3288e6;
+            color: #fff;
+        }
+
+        .demo-dialog-button-cancel {
+            background: #e0e0e0;
+            color: #777;
+        }
+
+        pre {
+            padding: 10px;
+            border: 1px #ccc solid;
+        }
+    </style>
+</head>
+
+<body ng-controller="DemoCtrl">
+<header>
+    <h1>Angular Dialog</h1>
+</header>
+<div class="main">
+    <h3>使用自定义服务调用</h3>
+    <a href="" ng-click="loadTemplateType1()">模板调用方式1： 使用ng-template调用模板</a>
+    <a href="" ng-click="loadTemplateType2()">模板调用方式2： 参数配置模板</a>
+    <a href="" ng-click="loadTemplateType3()">模板调用方式3： 加载模板模板文件</a>
+    <a href="" ng-click="disableAnimation()">禁用动画载入</a>
+    <a href="" ng-click="hideClose()">隐藏关闭按钮</a>
+    <a href="" ng-click="hideOverlay()">隐藏遮罩层</a>
+    <a href="" ng-click="disableCloseByDocument()">禁用弹层之外点击关闭</a>
+    <a href="" ng-click="disableCloseByEsc()">禁用使用esc键关闭</a>
+    <a href="" ng-click="customWidth()">自定义宽度</a>
+    <a href="" ng-click="customHeight()">自定义高度</a>
+    <a href="" ng-click="externalController()">控制器调用方式1: function</a>
+    <a href="" ng-click="inlineController()">控制器调用方式2: string</a>
+    <a href="" ng-click="openConfirm()">打开确认框(confirm)</a>
+
+    <h3>自定义CSS</h3>
+    <a href="" ng-click="openScale()">自定义进入动画-scale</a>
+    <a href="" ng-click="openSlideInRight()">自定义进入动画-slide right</a>
+    <a href="" ng-click="openSlideInBottom()">自定义动画-slide bottom</a>
+    <a href="" ng-click="openFall()">自定义进入动画-fall</a>
+    <a href="" ng-click="openFilpHorizontal()">自定义进入动画-3d-horizontal</a>
+    <a href="" ng-click="openFilpVertical()">自定义进入动画-3d-vertical</a>
+    <h3>使用自定义指令调用</h3>
+    <a
+            ng-dialog="defaultTemplate"
+            ng-dialog-class="ngdialog-theme-default"
+            ng-dialog-controller="InsideCtrl"
+            ng-dialog-disable-animation="false"
+            ng-dialog-data="{{jsonData}}"
+            ng-dialog-show-close="true"
+            ng-dialog-close-by-esc="true"
+            ng-dialog-close-by-document="true"
+            ng-dialog-overlay="true">通过指令打开
+    </a>
+    <h3>调用方式</h3>
+    <pre>
+ngDialog.open({
+    // 模板调用方式，支持方式：1-直接写入模板 2-通过script调用模板 3-调用外部文件
+    template: 'defaultTemplate',
+        
+    // 模板样式
+    className: 'ngdialog-theme-default',
+        
+    // 弹层controller
+    controller: 'InsideCtrl',
+        
+    // 传递的数据
+    data: {foo: '数据调用'},
+        
+    // 是否禁用弹层进入和关闭是的动画，默认false
+    disableAnimation: false,
+        
+    // 是否支持esc键关闭弹层，默认true
+    closeByEscape: true,
+        
+    // 是否显示关闭按钮，默认true
+    showClose: true,
+        
+    // 是否支持弹层外点击关闭弹层，默认true
+    closeByDocument: true,
+        
+    // 是否支持路由改变时自动关闭弹层（支持ui-router），默认true
+    closeByRouter: true,
+
+    // 是否显示遮罩层，默认true
+    overlay: true,
+
+    // 自定义宽度，默认null
+    width: null,
+
+    // 自定义高度，默认null
+    height: null,
+
+    // 注入到controller中的数据
+    resolve: {},
+        
+    // 关闭弹层前的回调
+    preCloseCallback: function () {
+        console.log('default pre-close callback');
+    }
+})
+    </pre>
+</div>
+
+<script type="text/ng-template" id="defaultTemplate">
+    <div class="demo-dialog-head" ng-show="title">{{title}}</div>
+    <div class="demo-dialog-body">
+        <p>{{content}}</p>
+        <p ng-show="count">{{count}}</p>
+        <pre>加载数据：{{jsonData}}</pre>
+        <p>
+            <button ng-click="closeDialog()">关闭弹层</button>
+        </p>
+        <p>
+            <button type="button" ng-click="openSecond()">继续打开弹层</button>
+        </p>
+    </div>
+    <div class="demo-dialog-foot">
+        <button type="button" class="demo-dialog-button demo-dialog-button-ok" ng-click="closeDialog()">确定</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="templateConfirm">
+    <div class="demo-dialog-head">提示</div>
+    <div class="demo-dialog-body">
+        <p>确认删除吗</p>
+    </div>
+    <div class="demo-dialog-foot">
+        <button type="button" class="demo-dialog-button demo-dialog-button-ok" ng-click="confirm('ok')">确定</button>
+        <button type="button" class="demo-dialog-button demo-dialog-button-cancel" ng-click="closeDialog('cancel')">取消
+        </button>
+    </div>
+</script>
+
+<script src="./angular.js"></script>
+<script src="../src/js/ngDialog.js"></script>
+
+<script>
+    var app = angular.module('dialogDemo', ['ngDialog']);
+
+    app.config(['ngDialogProvider', function (ngDialogProvider) {
+        ngDialogProvider.setDefaults({
+            template: 'defaultTemplate',
+            className: 'ngdialog-theme-default',
+            controller: 'InsideCtrl',
+            data: {foo: '数据调用'},
+            disableAnimation: false,
+            closeByEscape: true,
+            showClose: true,
+            closeByDocument: true,
+            closeByRouter: true,
+            overlay: true,
+            width: null,
+            height: null,
+            resolve: {},
+            preCloseCallback: function () {
+                console.log('default pre-close callback');
+            }
+        });
+    }]);
+
+    app.controller('DemoCtrl', function ($scope, $rootScope, ngDialog, $timeout) {
+        $rootScope.jsonData = '{"foo": "bar"}';
+
+        $scope.loadTemplateType1 = function () {
+            ngDialog.open({
+                template: 'defaultTemplate'
+            });
+        };
+
+        $scope.loadTemplateType2 = function () {
+            ngDialog.open({
+                template: '<div style="padding: 50px;"><h3>test - 参数配置模板</h3></div>'
+            });
+        };
+
+        $scope.loadTemplateType3 = function () {
+            ngDialog.open({
+                template: 'externalTemplate.html'
+            });
+        };
+
+        $scope.disableAnimation = function () {
+            ngDialog.open({
+                disableAnimation: true
+            });
+        };
+
+        $scope.hideClose = function () {
+            ngDialog.open({
+                showClose: false
+            });
+        };
+
+        $scope.disableCloseByDocument = function () {
+            ngDialog.open({
+                closeByDocument: false
+            });
+        };
+
+        $scope.disableCloseByEsc = function () {
+            ngDialog.open({
+                closeByEsc: false
+            });
+        };
+
+        $scope.customWidth = function () {
+            ngDialog.open({
+                width: 1000
+            });
+        };
+
+        $scope.customHeight = function () {
+            ngDialog.open({
+                height: 300
+            });
+        };
+
+        $scope.externalController = function () {
+            ngDialog.open({
+                controller: 'InsideCtrl'
+            });
+        };
+
+        $scope.inlineController = function () {
+            ngDialog.open({
+                controller: ['$scope', '$timeout', function ($scope, $timeout) {
+                    var counter = 0;
+                    var timeout;
+
+                    function count() {
+                        $scope.count = '统计: ' + (counter++);
+                        timeout = $timeout(count, 500);
+                    }
+
+                    count();
+                    $scope.title = 'Angular Dialog';
+                    $scope.$on('$destroy', function () {
+                        $timeout.cancel(timeout);
+                    });
+                }]
+            });
+        };
+
+        $scope.openConfirm = function () {
+            ngDialog.openConfirm({
+                template: 'templateConfirm',
+            }).then(function (value) {
+                console.log('resolved ', value);
+            }, function (reason) {
+                console.log('rejected ', reason);
+            });
+        };
+
+        $scope.hideOverlay = function () {
+            ngDialog.open({
+                overlay: false
+            });
+        };
+
+        $scope.openScale = function () {
+            ngDialog.open({
+                template: 'defaultTemplate',
+                className: 'ngdialog-theme-scale'
+            });
+        };
+
+        $scope.openSlideInRight = function () {
+            ngDialog.open({
+                template: 'defaultTemplate',
+                className: 'ngdialog-theme-slide-right'
+            });
+        };
+
+        $scope.openSlideInBottom = function () {
+            ngDialog.open({
+                template: 'defaultTemplate',
+                className: 'ngdialog-theme-slide-bottom'
+            });
+        };
+
+        $scope.openFall = function () {
+            ngDialog.open({
+                template: 'defaultTemplate',
+                className: 'ngdialog-theme-fall'
+            });
+        };
+
+        $scope.openFilpHorizontal = function () {
+            ngDialog.open({
+                template: 'defaultTemplate',
+                className: 'ngdialog-theme-filp-horizontal'
+            });
+        };
+
+        $scope.openFilpVertical = function () {
+            ngDialog.open({
+                template: 'defaultTemplate',
+                className: 'ngdialog-theme-filp-vertical'
+            });
+        };
+    });
+
+    app.controller('InsideCtrl', function ($scope, ngDialog) {
+        $scope.title = 'Angular Dialog';
+        $scope.content = '弹层内容弹层内容弹层内容弹层内容...';
+        $scope.openSecond = function () {
+            ngDialog.open({
+                template: '<div class="ngdialog-head" style="padding: 30px"><a href="" ng-click="closeSecond()">关闭弹出层</a></div>',
+                plain: true,
+                controller: 'SecondModalCtrl'
+            });
+        };
+    });
+
+    app.controller('SecondModalCtrl', function ($scope, ngDialog) {
+        $scope.closeSecond = function () {
+            ngDialog.close();
+        };
+    });
+</script>
+</body>
+</html>

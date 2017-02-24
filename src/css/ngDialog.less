@@ -1,0 +1,362 @@
+@keyframes ngdialog-fadeout {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes ngdialog-fadein {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+html.ngdialog-open,
+body.ngdialog-open {
+	overflow: hidden !important;
+}
+
+.ngdialog {
+	position: fixed;
+	overflow: auto;
+	box-sizing: border-box;
+	z-index: 10000;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.ngdialog .ngdialog-overlay {
+	position: fixed;
+	background: rgba(0, 0, 0, 0.4);
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.ngdialog .ngdialog-content {
+	width: 600px;
+	font-size: 14px;
+	line-height: 1.5em;
+	margin: 0 auto;
+	position: relative;
+	background: #fff;
+	color: #333;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+}
+
+.ngdialog .ngdialog-close {
+	cursor: pointer;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.ngdialog .ngdialog-close:before {
+	color: #333;
+	content: '\00D7';
+	font-size: 26px;
+	width: 20px;
+	height: 20px;
+	line-height: 18px;
+	right: 12px;
+	top: 12px;
+	position: absolute;
+	text-align: center;
+}
+
+.ngdialog .ngdialog-close:hover:before,
+.ngdialog .ngdialog-close:active:before {
+	color: #999;
+}
+
+.ngdialog.ngdialog-disabled-animation,
+.ngdialog.ngdialog-disabled-animation .ngdialog-overlay,
+.ngdialog.ngdialog-disabled-animation .ngdialog-content {
+	animation: none !important;
+}
+
+/* ----------------------------- theme start -------------------------------------*/
+
+/* ngdialog-theme-default */
+@keyframes ngdialog-flyin {
+	0% {
+		opacity: 0;
+		transform: translateY(-40px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes ngdialog-flyout {
+	0% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateY(-40px);
+	}
+}
+.ngdialog.ngdialog-theme-default .ngdialog-overlay {
+	animation: ngdialog-fadein 0.5s;
+}
+
+.ngdialog-theme-default.ngdialog-closing .ngdialog-overlay {
+	animation: ngdialog-fadeout 0.5s;
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+	animation: ngdialog-flyin .5s;
+}
+
+.ngdialog-theme-default.ngdialog-closing .ngdialog-content {
+	animation: ngdialog-flyout .5s;
+}
+
+@keyframes ngdialog-scalein {
+	0% {
+		opacity: 0;
+		transform: scale(0.7);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes ngdialog-scaleout {
+	0% {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	100% {
+		opacity: 0;
+		transform: scale(0.7);
+	}
+}
+
+.ngdialog.ngdialog-theme-scale .ngdialog-content {
+	animation: ngdialog-scalein .3s;
+}
+
+.ngdialog-theme-scale.ngdialog-closing .ngdialog-content {
+	animation: ngdialog-scaleout .5s;
+}
+
+.ngdialog-theme-scale.ngdialog-closing .ngdialog-overlay {
+	animation: ngdialog-fadeout .5s;
+}
+
+/*ngdialog-scale-right-in*/
+@keyframes ngdialog-scale-right-in {
+	0% {
+		opacity: 0;
+		transform: translateX(20%);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes ngdialog-scale-right-out {
+	0% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateX(20%);
+	}
+}
+
+.ngdialog.ngdialog-theme-slide-right .ngdialog-content {
+	animation: ngdialog-scale-right-in .3s;
+}
+
+.ngdialog-theme-slide-right.ngdialog-closing .ngdialog-content {
+	animation: ngdialog-scale-right-out .5s;
+}
+
+.ngdialog-theme-slide-right.ngdialog-closing .ngdialog-overlay {
+	animation: ngdialog-fadeout .5s;
+}
+
+/*ngdialog-scale-bottom-in*/
+@keyframes ngdialog-scale-bottom-in {
+	0% {
+		opacity: 0;
+		transform: translateY(20%);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes ngdialog-scale-bottom-out {
+	0% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateY(20%);
+	}
+}
+
+.ngdialog.ngdialog-theme-slide-bottom .ngdialog-content {
+	animation: ngdialog-scale-bottom-in .3s;
+}
+
+.ngdialog-theme-slide-bottom.ngdialog-closing .ngdialog-content {
+	animation: ngdialog-scale-bottom-out .5s;
+}
+
+.ngdialog-theme-slide-bottom.ngdialog-closing .ngdialog-overlay {
+	animation: ngdialog-fadeout .5s;
+}
+
+/*ngdialog-theme-fall-in*/
+@keyframes ngdialog-theme-fall-in {
+	0% {
+		opacity: 0;
+		transform: translateZ(600px) rotateX(20deg);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateZ(0px) rotateX(0deg);
+	}
+}
+
+@keyframes ngdialog-theme-fall-out {
+	0% {
+		opacity: 1;
+		transform: translateZ(0px) rotateX(0deg);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateZ(600px) rotateX(20deg);
+	}
+}
+
+.ngdialog.ngdialog-theme-fall {
+	perspective: 1300px;
+}
+
+.ngdialog.ngdialog-theme-fall .ngdialog-content {
+	transform-style: preserve-3d;
+	animation: ngdialog-theme-fall-in .3s;
+}
+
+.ngdialog-theme-fall.ngdialog-closing .ngdialog-content {
+	animation: ngdialog-theme-fall-out .5s;
+}
+
+.ngdialog-theme-fall.ngdialog-closing .ngdialog-overlay {
+	animation: ngdialog-fadeout .5s;
+}
+
+/*ngdialog-theme-filp-horizontal*/
+@keyframes ngdialog-theme-filp-horizontal-in {
+	0% {
+		opacity: 0;
+		transform: rotateY(-70deg);
+	}
+
+	100% {
+		opacity: 1;
+		transform: rotateY(0deg);
+	}
+}
+
+@keyframes ngdialog-theme-filp-horizontal-out {
+	0% {
+		opacity: 1;
+		transform: rotateY(0deg);
+	}
+
+	100% {
+		opacity: 0;
+		transform: rotateY(-70deg);
+	}
+}
+
+.ngdialog.ngdialog-theme-filp-horizontal {
+	perspective: 1300px;
+}
+
+.ngdialog.ngdialog-theme-filp-horizontal .ngdialog-content {
+	animation: ngdialog-theme-filp-horizontal-in .3s;
+}
+
+.ngdialog-theme-filp-horizontal.ngdialog-closing .ngdialog-content {
+	animation: ngdialog-theme-filp-horizontal-out .5s;
+}
+
+.ngdialog-theme-filp-horizontal.ngdialog-closing .ngdialog-overlay {
+	animation: ngdialog-fadeout .5s;
+}
+
+/*ngdialog-theme-filp-vertical*/
+@keyframes ngdialog-theme-filp-vertical-in {
+	0% {
+		opacity: 0;
+		transform: rotateX(-70deg);
+	}
+
+	100% {
+		opacity: 1;
+		transform: rotateX(0deg);
+	}
+}
+
+@keyframes ngdialog-theme-filp-vertical-out {
+	0% {
+		opacity: 1;
+		transform: rotateX(0deg);
+	}
+
+	100% {
+		opacity: 0;
+		transform: rotateX(-70deg);
+	}
+}
+
+.ngdialog.ngdialog-theme-filp-vertical {
+	perspective: 1300px;
+}
+
+.ngdialog.ngdialog-theme-filp-vertical .ngdialog-content {
+	animation: ngdialog-theme-filp-vertical-in .3s;
+}
+
+.ngdialog-theme-filp-vertical.ngdialog-closing .ngdialog-content {
+	animation: ngdialog-theme-filp-vertical-out .5s;
+}
+
+.ngdialog-theme-filp-vertical.ngdialog-closing .ngdialog-overlay {
+	animation: ngdialog-fadeout .5s;
+}

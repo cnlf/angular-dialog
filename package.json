@@ -1,0 +1,48 @@
+{
+  "name": "angular-dialog",
+  "version": "1.1.2",
+  "homepage": "https://github.com/cnlf/angular-dialog",
+  "description": "Modal dialogs and popups provider for Angular.js applications",
+  "main": "./src/js/ngDialog.js",
+  "style": "./src/css/ngDialog.css",
+  "scripts": {
+    "start": "gulp serve",
+    "build": "gulp build"
+  },
+  "keywords": [
+    "angular.js",
+    "modals",
+    "dialog",
+    "popups",
+    "ng",
+    "provider",
+    "factory",
+    "directive"
+  ],
+  "author": {
+    "name": "wlf",
+    "email": "wlf-21@163.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cnlf/angular-dialog"
+  },
+  "readmeFilename": "README.md",
+  "engines": {
+    "node": ">=4"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^6.1.1",
+    "gulp-clean-css": "^3.0.3",
+    "gulp-connect": "^5.0.0",
+    "gulp-less": "^3.3.0",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.5.0",
+    "gulp-uglify": "^2.0.0"
+  }
+}
